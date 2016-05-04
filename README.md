@@ -2,6 +2,11 @@
 
 A simple Python script to generate captcha using ImageMagick.
 
+Run as:
+python captcha.py
+
+Output is stored out.png
+
 Example:
 
 ![Sample-1](https://raw.githubusercontent.com/arun-babu/captcha.py/master/sample-captcha-arun.png)
