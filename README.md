@@ -13,6 +13,6 @@ Example:
 
 ![Sample-2](https://raw.githubusercontent.com/arun-babu/captcha.py/master/sample-captcha.png)
 
-Rotations / Waves can be used, but they make it difficult for the user. Example:
+Rotations / Waves can be used, but they make it difficult for the user. Example (with "convert -wave " command):
 
 ![Sample-3](https://raw.githubusercontent.com/arun-babu/captcha.py/master/wave.png)
