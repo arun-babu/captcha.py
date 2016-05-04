@@ -1,6 +1,6 @@
 # captcha.py : A simple Python script to generate captcha using ImageMagick
 Example:
 
-![alt tag](https://raw.githubusercontent.com/aru-babu/captcha.py/sample-captcha-arun.png)
+![Sample-1](https://raw.githubusercontent.com/arun-babu/captcha.py/master/sample-captcha-arun.png)
 
-![alt tag](https://raw.githubusercontent.com/aru-babu/captcha.py/sample-captcha.png)
+![Sample-2](https://raw.githubusercontent.com/arun-babu/captcha.py/master/sample-captcha.png)
