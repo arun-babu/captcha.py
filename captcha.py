@@ -54,7 +54,7 @@ captcha = "".join(random.sample(Symbols, n%3 + 4))
 
 print "Captcha is ",captcha
 
-convert_cmd  = "convert -size 400x85 plasma:grey50-grey50 -channel RGBA "
+convert_cmd  = "convert -implode 0.1 -size 400x85 plasma:grey50-grey50 -channel RGBA "
 
 y = 40 + random.randint(0,10)
 
