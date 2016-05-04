@@ -72,7 +72,7 @@ for c in captcha:
 	y += 55 + random.randint(0,6)
 	x = 65 + random.randint(0,6) * ( (-1)**random.randint(0,1) )
 
-rotate = random.randint(0,20)
+rotate = random.randint(0,20) # Though rotating is good, it makes it difficult for user !
 
 convert_cmd += " out.png"
 
