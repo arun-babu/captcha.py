@@ -1,5 +1,6 @@
 
 """
+
  Author P. Arun Babu
  This software is released in ISC License
 
@@ -10,7 +11,8 @@ import random
 
 random.seed(None)
 
-Symbols = r"1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*()-_+={}[];:>\/?<>,."
+Symbols =  r"1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+Symbols += r"~!@#$%^&*()-_+={}[];:>\/?<>,." # Make captcha difficult
 
 Fonts = [
 	"AvantGarde-Book",
@@ -49,34 +51,43 @@ Fonts = [
 	# "Symbol", # lets not use symbol font !
 ]
 
-n = random.randint(0,100)
-captcha = "".join(random.sample(Symbols, n%3 + 4))
+def gen_captcha (save_as = "out.png"):
+#
 
-print "Captcha is ",captcha
+	n 	= 4 + random.randint(0,100)%3 		# generate 4-6 chars 
+	captcha = "".join(random.sample(Symbols, n)) 
 
-# remove "-implode 0.1" to make captcha easier
-convert_cmd  = "convert -implode 0.1 -size 400x85 plasma:grey50-grey50 -channel RGBA "
+	implode = str(random.uniform(0.1,0.16))
+	implode = implode[:4]
 
-y = 40 + random.randint(0,10)
+	convert_cmd  = "convert -implode " +implode+  " -size 400x85 plasma:grey50-grey50 -channel RGBA "
 
-for c in captcha:
+	# x,y where captcha chars will be drawn 
+	y = 40 + random.randint(0,10)
 
-	color_1 = "#" + "".join(random.sample('01234567890ABCDEF',6))
-	color_2 = "#" + "".join(random.sample('01234567890ABCDEF',6))
+	for c in captcha:
+	#
+		color_1 = "#" + "".join(random.sample('01234567890ABCDEF',6))
+		color_2 = "#" + "".join(random.sample('01234567890ABCDEF',6))
 
-	font = random.choice(Fonts)
+		font = random.choice(Fonts)
 
-	convert_cmd += " -pointsize " + str(60 + random.randint(0,21)) 
-	convert_cmd += " -tile gradient:" + color_1 + "-" + color_2 
-	convert_cmd += " -font " +font+ " -draw \"text "+str(y)+",65 \'" +c+"\'\" "
+		convert_cmd += " -pointsize " + str(60 + random.randint(0,21)) 
+		convert_cmd += " -tile gradient:" + color_1 + "-" + color_2 
+		convert_cmd += " -font " +font+ " -draw \"text "+str(y)+",65 \'" +c+"\'\" "
 
-	y += 55 + random.randint(0,6)
-	x = 65 + random.randint(0,6) * ( (-1)**random.randint(0,1) )
+		y += 55 + random.randint(0,6)
+		x = 65 + random.randint(0,6) * ( (-1)**random.randint(0,1) )
+	#
 
-rotate = random.randint(0,20) # Though rotating is good, it makes it difficult for user !
+	convert_cmd += " " + save_as
 
-convert_cmd += " out.png"
+	# print "{"+convert_cmd+"}" # debug 
+	convert_cmd = convert_cmd.replace('$','\$')
+	os.system(convert_cmd)
 
-# print "{"+convert_cmd+"}" 
-convert_cmd = convert_cmd.replace('$','\$')
-os.system(convert_cmd)
+	return captcha
+#
+
+if __name__ == "__main__":
+	print "Generating captcha : "+gen_captcha ("my.png")
