@@ -3,9 +3,9 @@
 A simple Python script to generate captcha using ImageMagick.
 
 Run as:
-python captcha.py
+python captcha.py **or** use the function : gen_captcha(save_as_filename_png)
 
-Output is stored out.png
+By default, output is stored out.png
 
 Example:
 
