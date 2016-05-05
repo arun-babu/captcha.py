@@ -74,10 +74,10 @@ def gen_captcha (save_as = "out.png"):
 
 		convert_cmd += " -pointsize " + str(60 + random.randint(0,21)) 
 		convert_cmd += " -tile gradient:" + color_1 + "-" + color_2 
-		convert_cmd += " -font " +font+ " -draw \"text "+str(y)+",65 \'" +c+"\'\" "
 
-		y += 55 + random.randint(0,6)
 		x = 65 + random.randint(0,6) * ( (-1)**random.randint(0,1) )
+		convert_cmd += " -font " +font+ " -draw \"text "+str(y)+"," + str(x) + "\'" +c+"\'\" "
+		y += 55 + random.randint(0,6)
 	#
 
 	convert_cmd += " " + save_as
