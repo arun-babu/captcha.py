@@ -51,9 +51,14 @@ Fonts = [
 	# "Symbol", # lets not use symbol font !
 ]
 
+def random_xy ():
+	return str(random.randint(0,400)) +"," + str(random.randint(0,85)) + " " 
+
+def random_color ():
+	return "#" + "".join(random.sample('01234567890ABCDEF',6))
+
 def gen_captcha (save_as = "out.png"):
 #
-
 	n 	= 4 + random.randint(0,100)%3 		# generate 4-6 chars 
 	captcha = "".join(random.sample(Symbols, n)) 
 
@@ -62,13 +67,19 @@ def gen_captcha (save_as = "out.png"):
 
 	convert_cmd  = "convert -implode " +implode+  " -size 400x85 plasma:grey50-grey50 -channel RGBA "
 
+	for i in xrange(0,random.randint(6,25)):	
+		line_color = random.choice(['gray'])
+		convert_cmd += " -fill none -stroke " + line_color +  " -draw 'bezier " + random_xy() + random_xy() + random_xy() + random_xy() +"' -stroke none " 
+
 	# x,y where captcha chars will be drawn 
 	y = 40 + random.randint(0,10)
 
+	captcha = captcha.replace("\\","\\\\")
+
 	for c in captcha:
 	#
-		color_1 = "#" + "".join(random.sample('01234567890ABCDEF',6))
-		color_2 = "#" + "".join(random.sample('01234567890ABCDEF',6))
+		color_1 = random_color () 
+		color_2 = random_color () 
 
 		font = random.choice(Fonts)
 
@@ -79,6 +90,7 @@ def gen_captcha (save_as = "out.png"):
 		convert_cmd += " -font " +font+ " -draw \"text "+str(y)+"," + str(x) + "\'" +c+"\'\" "
 		y += 55 + random.randint(0,6)
 	#
+
 
 	convert_cmd += " " + save_as
 
