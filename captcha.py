@@ -12,7 +12,7 @@ import random
 random.seed(None)
 
 Symbols =  r"1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-Symbols += r"~!@#$%^&*()-_+={}[];:>\/?<>,." # Make captcha difficult
+Symbols += r"~!@#$%^&*()-_+={}[];:>/?<>,." # Make captcha difficult
 
 Fonts = [
 	"AvantGarde-Book",
