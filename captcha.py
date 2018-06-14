@@ -68,7 +68,9 @@ def gen_captcha (save_as = "out.png"):
 	convert_cmd  = "convert -implode " +implode+  " -size 400x85 plasma:grey50-grey50 -channel RGBA "
 
 	for i in xrange(0,random.randint(6,25)):	
-		line_color = random.choice(['gray', 'black', 'yellow'])
+		#line_color = random.choice(['gray', 'black', 'yellow'])
+		line_color = random.choice(['gray'])
+
 		convert_cmd += " -fill none -stroke " + line_color +  " -draw 'bezier " + random_xy() + random_xy() + random_xy() + random_xy() +"' -stroke none " 
 
 	# x,y where captcha chars will be drawn 
